@@ -1,23 +1,46 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import Newlist from './component/todo/NewList/Newlist';
+import Template from './component/todo/template_form/Template';
 
-function App() {
+
+
+
+  const arr=[
+    {
+      id:"e1",
+    list:'to do the home work'
+    },
+    {
+      id:"e2",
+      list:"study for exam"
+    },
+    {
+      id:"e3",
+      list:"pay the rent for house"
+    },
+    {
+      id:"e4",
+      list:"do codechef"
+    },
+    {
+      id:"e5",
+      list:"do leetcode"
+    }
+];
+function App(){
+  const [data,setnewdata]=useState(arr)
+  const onadddata=(newdata)=>{
+    setnewdata((prev)=>{
+     return [newdata,...prev];
+    
+  })
+}
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Newlist onadddata={onadddata}/>
+     < Template data={data}/>
     </div>
   );
 }
